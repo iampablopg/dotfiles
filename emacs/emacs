@@ -7,12 +7,29 @@
 ;; --------------------------------------------------------------------------------------------------------------------------------
 ;; PACKAGES
 ;; --------------------------------------------------------------------------------------------------------------------------------
+(package-initialize)
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
-(package-initialize)
+
+(dolist (package '(jbeans-theme
+		   ag
+		   neotree
+		   all-the-icons
+		   company
+		   dumb-jump
+		   auto-complete
+		   helm-projectile
+		   alchemist
+		   elixir-mode
+		   ruby-mode
+		   multi-term))
+  (unless (package-installed-p package)
+    (package-refresh-contents)
+    (package-install package))
+  (require package))
 
 ;; --------------------------------------------------------------------------------------------------------------------------------
-;; FAVOURITE EMACS THEMES
+;; FAVOURITE EMACS THEMES (discomment desired theme)
 ;; --------------------------------------------------------------------------------------------------------------------------------
 (load-theme 'jbeans t)
 ;; (load-theme 'granger t)
@@ -74,10 +91,8 @@
 
 (setq ag-highlight-search t)
 (setq ac-ignore-case nil)
-(setq linum-format 'linum-highlight-current-line-number)
 
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
-(add-to-list 'load-path "~/.emacs.d/linum")
 (add-to-list 'ac-modes 'enh-ruby-mode)
 (add-to-list 'ac-modes 'web-mode)
 (add-to-list 'elixir-mode-hook 'alchemist-mode)
@@ -86,10 +101,6 @@
   '(defun elixir-format--mix-executable ()
      (string-trim-right (shell-command-to-string "asdf which mix"))))
 
-(require 'ag)
-(require 'neotree)
-(require 'all-the-icons)
-(require 'linum-highlight-current-line-number)
 (require 'auto-complete-config)
 
 ;; --------------------------------------------------------------------------------------------------------------------------------
@@ -138,12 +149,14 @@
             :append :local))
 
 ;; ALL THE ICONS IN PROJECT TREE
+;; You must run 'M-x all-the-icons-install-fonts' after first init to show icon fonts.
 (defun neo-buffer--insert-fold-symbol (name &optional file-name)
  "Custom overriding function for the fold symbol.
 `NAME' decides what fold icon to use, while` FILE-NAME' decides
 what file icon to use."
  (or
-     (and (equal name 'leaf)  (insert (all-the-icons-icon-for-file file-name)))))
+  (and (equal name 'leaf)  (insert (all-the-icons-icon-for-file file-name)))))
+
 (setq ruby-insert-encoding-magic-comment nil)
 
 (custom-set-faces
