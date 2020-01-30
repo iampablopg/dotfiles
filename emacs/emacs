@@ -63,6 +63,8 @@
 (global-set-key (kbd "C-c a") 'ag-project)
 ;; SHOW/HIDE PROJECT DIRECTORY TREE
 (global-set-key [f8] 'neotree-toggle)
+;; DUMB JUMP BACK
+(global-set-key (kbd "C-M-b") 'dumb-jump-back)
 ;; LOAD INPUT THEME
 (global-set-key [f7] 'load-theme)
 ;; GO TO ELIXIR DOC OFFICIAL SITE
