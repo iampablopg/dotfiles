@@ -12,6 +12,7 @@
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 
 (dolist (package '(jbeans-theme
+		   dracula-theme
 		   ag
 		   neotree
 		   all-the-icons
@@ -29,9 +30,20 @@
   (require package))
 
 ;; --------------------------------------------------------------------------------------------------------------------------------
-;; FAVOURITE EMACS THEMES (discomment desired theme)
+;; EMACS THEMES SWITCHER (FOR RUBY AND ELIXIR WITH -rb AND -ex COMMAND LINE OPTIONS
 ;; --------------------------------------------------------------------------------------------------------------------------------
-(load-theme 'jbeans t)
+;; My favourite theme for Elixir
+(defun apply-elixir-theme (switch)
+  (dolist (i custom-enabled-themes)
+    (disable-theme i))
+  (load-theme 'dracula t))
+(add-to-list 'command-switch-alist '("-ex" . apply-elixir-theme))
+;; My favourite theme for Ruby
+(defun apply-ruby-theme (switch)
+  (dolist (i custom-enabled-themes)
+    (disable-theme i))
+  (load-theme 'jbeans t))
+(add-to-list 'command-switch-alist '("-rb" . apply-ruby-theme))
 ;; (load-theme 'granger t)
 ;; (load-theme 'material t)
 ;; (load-theme 'tangotango t)
@@ -61,10 +73,10 @@
 (global-set-key (kbd "C-c m") 'mc/edit-lines)
 ;; AG SEARCH IN CURRENT PROJECT
 (global-set-key (kbd "C-c a") 'ag-project)
-;; SHOW/HIDE PROJECT DIRECTORY TREE
-(global-set-key [f8] 'neotree-toggle)
 ;; DUMB JUMP BACK
 (global-set-key (kbd "C-M-b") 'dumb-jump-back)
+;; SHOW/HIDE PROJECT DIRECTORY TREE
+(global-set-key [f8] 'neotree-toggle)
 ;; LOAD INPUT THEME
 (global-set-key [f7] 'load-theme)
 ;; GO TO ELIXIR DOC OFFICIAL SITE
@@ -89,7 +101,6 @@
 (menu-bar-mode -1)
 (ac-config-default)
 (global-linum-mode 1)
-(set-face-attribute 'default nil :height 145)
 
 (setq ag-highlight-search t)
 (setq ac-ignore-case nil)
