@@ -10,9 +10,8 @@
 (package-initialize)
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
-
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
 (dolist (package '(jbeans-theme
-		   dracula-theme
 		   ag
 		   neotree
 		   all-the-icons
@@ -36,7 +35,7 @@
 (defun apply-elixir-theme (switch)
   (dolist (i custom-enabled-themes)
     (disable-theme i))
-  (load-theme 'dracula t))
+  (load-theme 'dark-plus-elixir t))
 (add-to-list 'command-switch-alist '("-ex" . apply-elixir-theme))
 ;; My favourite theme for Ruby
 (defun apply-ruby-theme (switch)
@@ -44,6 +43,7 @@
     (disable-theme i))
   (load-theme 'jbeans t))
 (add-to-list 'command-switch-alist '("-rb" . apply-ruby-theme))
+
 ;; (load-theme 'granger t)
 ;; (load-theme 'material t)
 ;; (load-theme 'tangotango t)
