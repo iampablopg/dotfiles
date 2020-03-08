@@ -29,7 +29,7 @@
       (str     "#b6d958")
       (type    "#35CDAF")
       (var     "#85DDFF")
-      (warning "#ef2929"))
+      (warning "#fafafa"))
   (custom-theme-set-faces
    'dark-plus-elixir
    `(default                                  ((,class (:background ,bg1 :foreground ,fg1))))
@@ -72,7 +72,7 @@
    `(line-number                              ((,class (:foreground ,bg4))))
    `(line-number-current-line                 ((,class (:foreground ,comment))))
 
-   `(mode-line                                ((,class (:bold nil :foreground ,fg1 :background "#674e75"))))
+   `(mode-line                                ((,class (:bold nil :foreground ,fg1 :background ,bg3))))
    `(mode-line-inactive                       ((,class (:bold nil :foreground ,fg2 :background ,bg2))))
    `(mode-line-buffer-id                      ((,class (:bold t :foreground ,func :background nil))))
    `(mode-line-highlight                      ((,class (:foreground ,keyword :box nil :weight bold))))
