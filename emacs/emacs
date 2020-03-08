@@ -133,6 +133,12 @@
   (forward-line -1)
   (indent-according-to-mode))
 
+;; ENABLE ARROW KEYS IN IEX CONSOLE
+(defun term-send-up () (interactive) (term-send-raw-string "\e[A"))
+(defun term-send-down () (interactive) (term-send-raw-string "\e[B"))
+(defun term-send-right () (interactive) (term-send-raw-string "\e[C"))
+(defun term-send-left () (interactive) (term-send-raw-string "\e[D"))
+
 ;; CUSTOM CURRENT LINE GIT BLAME IN MINIBUFFER (LINE XX: COMMIT_ID | TITLE | AUTHOR | DATE)
 (defun git-blame-line ()
   (interactive)
