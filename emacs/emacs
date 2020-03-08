@@ -198,4 +198,5 @@ what file icon to use."
  '(scroll-bar-mode nil)
  '(show-paren-mode t)
  '(size-indication-mode t)
+ '(truncate-lines t)
  '(tool-bar-mode nil))
