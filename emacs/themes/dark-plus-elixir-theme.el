@@ -1,5 +1,7 @@
 ;;; vscode-dark-plus-theme.el --- A complete port of the default Visual Studio Code Dark+ theme for Emacs
 
+;; Author: Pablo Palomino <hi@iampablopg.com>
+
 (deftheme dark-plus-elixir)
 (let ((class '((class color) (min-colors 89)))
       (fg0     "#AEAFAD")
