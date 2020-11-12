@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -7,14 +14,13 @@ export ZSH="/home/pablo/.oh-my-zsh"
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-
-# ----------------------------------------------------------
-# ZSH FAVOURITE THEMES
-# ----------------------------------------------------------
-ZSH_THEME="robbyrussell"
-# ZSH_THEME="gallois"
-# ZSH_THEME="wuffers"
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+ZSH_THEME="powerlevel10k/powerlevel10k"
+# Set list of themes to pick from when loading at random
+# Setting this variable when ZSH_THEME=random will cause zsh to load
+# a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
+# If set to an empty array, this variable will have no effect.
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -26,8 +32,14 @@ ZSH_THEME="robbyrussell"
 # Uncomment the following line to disable bi-weekly auto-update checks.
 # DISABLE_AUTO_UPDATE="true"
 
+# Uncomment the following line to automatically update without prompting.
+# DISABLE_UPDATE_PROMPT="true"
+
 # Uncomment the following line to change how often to auto-update (in days).
 # export UPDATE_ZSH_DAYS=13
+
+# Uncomment the following line if pasting URLs and other text is messed up.
+# DISABLE_MAGIC_FUNCTIONS=true
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -66,60 +78,42 @@ plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
-# ----------------------------------------------------------
-# USER CONFIGURATION
-# ----------------------------------------------------------
+# User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='emacs'
-# else
-#   export EDITOR='emacs'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 # ----------------------------------------------------------
 # ALIASES
 # ----------------------------------------------------------
+# Enable ssh server
+alias enable_ssh='sudo /etc/init.d/ssh start'
+# Disable ssh server
+alias disable_ssh='sudo /etc/init.d/ssh stop'
+# Config ssh server
+alias config_ssh='sudo emacs /etc/ssh/sshd_config'
+# Connect to Raspberry Pi
+alias raspi='ssh pablopg@192.168.1.144'
 # Emacs non-gui mode
 alias emacsc='emacs -nw'
 # Dotfiles direct access
 alias dotfiles='cd ~/dotfiles'
 # Dropbox direct access
 alias dropbox='cd ~/Dropbox'
-
 # ----------------------------------------------------------
 # ZSH AUTOSUGGESTIONS
 # ----------------------------------------------------------
 source ~/.oh-my-zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 ZSH_AUTOSUGGEST_HIGLIGHT_STYLE='fg=5'
 
-# ----------------------------------------------------------
-# ENABLE ELIXIR CONSOLE HISTORY
-# ----------------------------------------------------------
 export ERL_AFLAGS="-kernel shell_history enabled"
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
 
-# ----------------------------------------------------------
-# SHOW USER@HOSTNAME IN ROBBYRUSSELL THEME
-# ----------------------------------------------------------
-PROMPT="$fg_bold[blue]%}$USER@%{$fg_bold[green]%}%m ${PROMPT}"
-
-# ----------------------------------------------------------
-# RVM
-# ----------------------------------------------------------
-export PATH="$PATH:$HOME/.rvm/bin"
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
 
 . $HOME/.asdf/asdf.sh
-
 . $HOME/.asdf/completions/asdf.bash
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
