@@ -29,7 +29,7 @@ apply_config() {
     program="${1}"
 
     printf "Creating config for ${program}...\\n"
-    cp ~/dotfiles/${program}/${program} ~/.${program}
+    cp ~/dotfiles/${program}/.${program} ~/.${program}
     printf "Done.\\n"
 }
 
