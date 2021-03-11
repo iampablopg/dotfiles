@@ -190,5 +190,6 @@ what file icon to use."
  '(scroll-bar-mode nil)
  '(show-paren-mode t)
  '(size-indication-mode t)
+ '(term-default-bg-color "#ffffff")
  '(tool-bar-mode nil)
  '(truncate-lines t))
