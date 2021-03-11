@@ -24,6 +24,7 @@
 		   multi-term
 		   eterm-256color
 		   undo-tree
+		   markdown-mode
 		   ))
   (unless (package-installed-p package)
     (package-refresh-contents)
@@ -102,6 +103,9 @@
 
 (setq ag-highlight-search t)
 (setq ac-ignore-case nil)
+;; Requires 'pandoc'
+(setq markdown-command "pandoc")
+
 
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 (add-to-list 'ac-modes 'enh-ruby-mode)
